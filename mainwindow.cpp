@@ -102,7 +102,18 @@ void MainWindow::on_actionRedo_triggered()
 
 void MainWindow::on_actionBold_triggered()
 {
-       ui->textEdit->setFontWeight(1000);
+    QTextCursor cursor = this->ui->textEdit->textCursor();
+    QTextCharFormat format;
+    if(!cursor.charFormat().font().bold())
+    {
+        format.setFontWeight(QFont::Bold);
+        cursor.mergeCharFormat(format);
+    }
+    else
+    {
+        format.setFontWeight(QFont::Normal);
+        cursor.mergeCharFormat(format);
+    }
 }
 
 
